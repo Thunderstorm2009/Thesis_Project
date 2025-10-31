@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Dashboard Presensi | User Panel</title>
 
-  <!-- Bootstrap & Icons -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
@@ -58,6 +57,9 @@
     }
 
     /* Profile avatar */
+    #profileDropdownTrigger { /* ID baru untuk trigger dropdown */
+      cursor: pointer;
+    }
     #profileImg {
       width: 38px;
       height: 38px;
@@ -92,7 +94,6 @@
 </head>
 <body>
 
-  <!-- Sidebar -->
   <div class="sidebar">
     <div class="header">
       <h4>Panel Karyawan</h4>
@@ -101,19 +102,23 @@
     <a href="{{ url('/izin') }}"><i class="fa fa-user-times me-2"></i> Izin</a>
     <a href="{{ url('/telat') }}"><i class="fa fa-clock me-2"></i> Telat</a>
     <a href="{{ url('/tutorial') }}"><i class="fa fa-book me-2"></i> Tutorial</a>
-    <a href="{{ url('/profile') }}"><i class="fa fa-user me-2"></i> Profil</a>
-    <a href="#" id="logoutBtn" class="mt-auto border-top border-light"><i class="fa fa-sign-out-alt me-2"></i> Keluar</a>
-  </div>
+    </div>
 
-  <!-- Main Content -->
   <div class="content">
     <nav class="navbar navbar-expand navbar-light mb-4">
       <div class="container-fluid d-flex justify-content-end align-items-center">
-        <div class="d-flex align-items-center">
-          <div id="profileImg">U</div>
-          <span id="profileName" class="fw-semibold text-primary"></span>
+        <div class="dropdown">
+          <div class="d-flex align-items-center" id="profileDropdownTrigger" data-bs-toggle="dropdown" aria-expanded="false">
+            <div id="profileImg">U</div>
+            <span id="profileName" class="fw-semibold text-primary"></span>
+          </div>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdownTrigger">
+            <li><a class="dropdown-item" href="{{ url('/profile') }}"><i class="fa fa-user me-2"></i> Profil</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#" id="logoutBtn"><i class="fa fa-sign-out-alt me-2"></i> Keluar</a></li>
+          </ul>
         </div>
-      </div>
+        </div>
     </nav>
 
     <div class="container">
@@ -123,19 +128,18 @@
           <p class="text-muted mb-0">Selamat datang di aplikasi presensi berbasis wajah.</p>
         </div>
 
-        <!-- Dashboard Presensi -->
         <div class="text-center">
           <h5 class="fw-semibold text-secondary mb-3">Dashboard Presensi</h5>
           <div class="row g-3 justify-content-center mb-4">
             <div class="col-6 col-md-3">
-              <button id="btnCheckIn" class="btn btn-primary w-100">
+              <a href="{{ url('/checkin') }}" id="btnCheckIn" class="btn btn-primary w-100">
                 <i class="fa-solid fa-clock me-2"></i>Check In
-              </button>
+              </a>
             </div>
             <div class="col-6 col-md-3">
-              <button id="btnCheckOut" class="btn btn-secondary w-100">
+              <a href="{{ url('/checkout') }}" id="btnCheckOut" class="btn btn-secondary w-100">
                 <i class="fa-solid fa-calendar-times me-2"></i>Check Out
-              </button>
+              </a>
             </div>
           </div>
 
@@ -159,7 +163,6 @@
     </div>
   </div>
 
-  <!-- Footer -->
   <footer class="text-center text-muted mt-5 mb-3">
     <small>© 2025 Aplikasi Presensi PT. Muncul Perdana Printindo</small>
   </footer>
@@ -216,51 +219,9 @@
       `).join('');
     }
 
-    // Tombol Check In
-    document.getElementById("btnCheckIn").addEventListener("click", () => {
-      const user = localStorage.getItem(LS_LOGGED);
-      const key = "rekap__" + user;
-      const rekap = JSON.parse(localStorage.getItem(key)) || {};
-      const today = new Date().toLocaleDateString('id-ID');
-      const now = new Date().toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
-
-      if (rekap[today]?.checkIn) {
-        alert("Anda sudah Check In hari ini!");
-        return;
-      }
-
-      rekap[today] = { checkIn: now, checkOut: "-" };
-      localStorage.setItem(key, JSON.stringify(rekap));
-      loadRekap(user);
-      alert("✅ Check In berhasil dicatat pada " + now);
-    });
-
-    // Tombol Check Out
-    document.getElementById("btnCheckOut").addEventListener("click", () => {
-      const user = localStorage.getItem(LS_LOGGED);
-      const key = "rekap__" + user;
-      const rekap = JSON.parse(localStorage.getItem(key)) || {};
-      const today = new Date().toLocaleDateString('id-ID');
-      const now = new Date().toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
-
-      if (!rekap[today]?.checkIn) {
-        alert("Anda belum Check In hari ini!");
-        return;
-      }
-
-      if (rekap[today].checkOut !== "-" && rekap[today].checkOut) {
-        alert("Anda sudah Check Out hari ini!");
-        return;
-      }
-
-      rekap[today].checkOut = now;
-      localStorage.setItem(key, JSON.stringify(rekap));
-      loadRekap(user);
-      alert("✅ Check Out berhasil dicatat pada " + now);
-    });
-
     // Logout
-    logoutBtn.addEventListener("click", () => {
+    logoutBtn.addEventListener("click", (e) => { // Menambahkan (e)
+      e.preventDefault(); // Mencegah navigasi default link '#'
       if (confirm("Yakin ingin keluar?")) {
         localStorage.removeItem(LS_LOGGED);
         window.location.href = "{{ url('/login') }}";

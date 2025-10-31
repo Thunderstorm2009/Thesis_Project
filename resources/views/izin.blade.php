@@ -86,11 +86,11 @@
         <!-- Rentang Tanggal -->
         <div class="row">
           <div class="col-md-6 mb-3">
-            <label class="form-label" for="izinStart">Mulai Izin</label>
+            <label class="form-label" for="izinStart">Mulai Tanggal</label>
             <input type="datetime-local" class="form-control" id="izinStart" required>
           </div>
           <div class="col-md-6 mb-3">
-            <label class="form-label" for="izinFinish">Selesai Izin</label>
+            <label class="form-label" for="izinFinish">Selesai Tanggal</label>
             <input type="datetime-local" class="form-control" id="izinFinish" required>
           </div>
         </div>

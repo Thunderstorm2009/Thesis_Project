@@ -56,7 +56,21 @@
       return;
     }
 
-    const newUser = { fullname, username, password };
+    // MODIFIKASI: Mendapatkan tanggal hari ini dalam format DD/MM/YYYY
+    const today = new Date().toLocaleDateString('id-ID', {
+        day: '2-digit', 
+        month: '2-digit', 
+        year: 'numeric'
+    }); 
+    
+    // Menambahkan tanggal daftar ke objek user
+    const newUser = { 
+        fullname, 
+        username, 
+        password,
+        tanggalDaftar: today // <--- Data Tanggal Disimpan di sini
+    };
+    
     localStorage.setItem('user__' + username, JSON.stringify(newUser));
     alert('✅ Registrasi berhasil! Silakan login.');
     window.location.href = "{{ url('/login') }}";
