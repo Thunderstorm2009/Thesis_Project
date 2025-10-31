@@ -60,23 +60,29 @@
     <p class="text-muted text-center mb-4">Lengkapi data berikut untuk mencatat keterlambatan Anda.</p>
 
     <form id="telatForm">
+      <!-- ID Karyawan -->
       <div class="mb-3">
-        <label class="form-label fw-semibold">Nama Lengkap</label>
+        <label class="form-label fw-semibold" for="idTelat">ID Karyawan</label>
+        <input type="text" id="idTelat" class="form-control" placeholder="Masukkan ID Karyawan Anda" required>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label fw-semibold" for="namaTelat">Nama Lengkap</label>
         <textarea id="namaTelat" class="form-control" rows="1" placeholder="Masukkan nama Anda" required></textarea>
       </div>
 
       <div class="mb-3">
-        <label class="form-label fw-semibold">Jabatan</label>
+        <label class="form-label fw-semibold" for="jabatanTelat">Jabatan</label>
         <textarea id="jabatanTelat" class="form-control" rows="1" placeholder="Masukkan jabatan Anda" required></textarea>
       </div>
 
       <div class="mb-3">
-        <label class="form-label fw-semibold">Alasan Keterlambatan</label>
+        <label class="form-label fw-semibold" for="alasanTelat">Alasan Keterlambatan</label>
         <textarea id="alasanTelat" class="form-control" rows="4" placeholder="Contoh: macet, urusan keluarga, dll" required></textarea>
       </div>
 
       <div class="mb-3">
-        <label class="form-label fw-semibold">Bukti Foto / Gambar</label>
+        <label class="form-label fw-semibold" for="buktiTelat">Bukti Foto / Gambar (Wajib)</label>
         <input type="file" id="buktiTelat" accept="image/*" class="form-control" required>
         <img id="previewTelat" class="img-preview d-none" alt="Preview Bukti">
       </div>
@@ -122,18 +128,22 @@
         return;
       }
 
+      const idKaryawan = document.getElementById('idTelat').value.trim();
       const nama = document.getElementById('namaTelat').value.trim();
       const jabatan = document.getElementById('jabatanTelat').value.trim();
       const alasan = document.getElementById('alasanTelat').value.trim();
       const bukti = previewTelat.src;
       const now = new Date().toLocaleString('id-ID');
 
-      if (!nama || !jabatan || !alasan || bukti === '') {
+      if (!idKaryawan || !nama || !jabatan || !alasan || bukti === '') {
         alert('Mohon lengkapi semua data sebelum mengirim.');
         return;
       }
 
+      const recordId = `telat_${Date.now()}`;
       const record = {
+        idKaryawan,
+        recordId,
         action: 'Telat',
         nama,
         jabatan,
@@ -142,8 +152,8 @@
         time: now
       };
 
-      localStorage.setItem(`telat__${user}__${Date.now()}`, JSON.stringify(record));
-      alert(`✅ Data keterlambatan berhasil disimpan!\n\nNama: ${nama}\nJabatan: ${jabatan}\nWaktu: ${now}`);
+      localStorage.setItem(`telat__${user}__${recordId}`, JSON.stringify(record));
+      alert(`✅ Data keterlambatan berhasil disimpan!\n\nID: ${idKaryawan}\nNama: ${nama}\nJabatan: ${jabatan}\nWaktu: ${now}`);
       window.location.href = '/';
     });
   </script>

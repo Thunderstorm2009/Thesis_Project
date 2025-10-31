@@ -59,39 +59,45 @@
       </p>
 
       <form id="izinForm">
+        <!-- ID Karyawan -->
+        <div class="mb-3">
+          <label class="form-label" for="izinId">ID Karyawan</label>
+          <input type="text" class="form-control" id="izinId" placeholder="Masukkan ID karyawan Anda" required>
+        </div>
+
         <!-- Nama -->
         <div class="mb-3">
-          <label class="form-label">Nama Lengkap</label>
+          <label class="form-label" for="izinName">Nama Lengkap</label>
           <input type="text" class="form-control" id="izinName" placeholder="Masukkan nama lengkap Anda" required>
         </div>
 
         <!-- Jabatan -->
         <div class="mb-3">
-          <label class="form-label">Jabatan</label>
+          <label class="form-label" for="izinPosition">Jabatan</label>
           <input type="text" class="form-control" id="izinPosition" placeholder="Masukkan jabatan Anda" required>
         </div>
 
         <!-- Alasan -->
         <div class="mb-3">
-          <label class="form-label">Alasan Izin</label>
+          <label class="form-label" for="izinReason">Alasan Izin</label>
           <textarea class="form-control" id="izinReason" rows="4" placeholder="Contoh: sakit, urusan keluarga, dll" required></textarea>
         </div>
 
         <!-- Rentang Tanggal -->
         <div class="row">
           <div class="col-md-6 mb-3">
-            <label class="form-label">Mulai Izin</label>
+            <label class="form-label" for="izinStart">Mulai Izin</label>
             <input type="datetime-local" class="form-control" id="izinStart" required>
           </div>
           <div class="col-md-6 mb-3">
-            <label class="form-label">Selesai Izin</label>
+            <label class="form-label" for="izinFinish">Selesai Izin</label>
             <input type="datetime-local" class="form-control" id="izinFinish" required>
           </div>
         </div>
 
         <!-- Upload Bukti -->
         <div class="mb-3">
-          <label class="form-label">Upload Bukti (Wajib)</label>
+          <label class="form-label" for="izinProof">Upload Bukti (Wajib)</label>
           <input type="file" class="form-control" id="izinProof" accept="image/*">
           <div class="text-center mt-2">
             <img id="previewImg" src="" alt="" style="max-width: 200px; display:none; border-radius:10px; margin-top:10px;">
@@ -143,6 +149,7 @@
         return;
       }
 
+      const id = document.getElementById("izinId").value.trim();
       const name = document.getElementById("izinName").value.trim();
       const position = document.getElementById("izinPosition").value.trim();
       const reason = document.getElementById("izinReason").value.trim();
@@ -150,13 +157,16 @@
       const finish = document.getElementById("izinFinish").value;
       const proof = previewImg.src || null;
 
-      if (!name || !position || !reason || !start || !finish) {
+      if (!id || !name || !position || !reason || !start || !finish) {
         alert("Semua data wajib diisi.");
         return;
       }
 
       const now = new Date().toLocaleString("id-ID");
+      const recordId = `izin_${Date.now()}`;
       const record = {
+        id,           // ID karyawan
+        recordId,     // ID unik izin
         action: "Izin",
         name,
         position,
@@ -167,7 +177,7 @@
         timeSubmitted: now
       };
 
-      localStorage.setItem(`presensi__${userLogged}__${Date.now()}`, JSON.stringify(record));
+      localStorage.setItem(`presensi__${userLogged}__${recordId}`, JSON.stringify(record));
       alert(`✅ Izin berhasil dikirim pada ${now}.`);
       window.location.href = "/";
     });
