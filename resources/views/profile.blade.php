@@ -20,7 +20,7 @@
       width: 250px;
       height: 100vh;
       position: fixed;
-      background-color: #1d3557;
+      background-color: #6c757d;
       color: white;
       display: flex;
       flex-direction: column;
@@ -33,7 +33,7 @@
       transition: background 0.3s;
     }
     .sidebar a:hover {
-      background-color: #457b9d;
+      background-color: #495057;
     }
     .sidebar .header {
       text-align: center;
@@ -106,6 +106,7 @@
       <h4>Panel Karyawan</h4>
     </div>
     <a href="{{ url('/') }}"><i class="fa fa-house me-2"></i> Dashboard</a>
+    <a href="{{ url('/presensi') }}"><i class="fa fa-fingerprint me-2"></i> Sistem Presensi</a>
     <a href="{{ url('/izin') }}"><i class="fa fa-user-times me-2"></i> Izin</a>
     <a href="{{ url('/telat') }}"><i class="fa fa-clock me-2"></i> Telat</a>
     <a href="{{ url('/tutorial') }}"><i class="fa fa-book me-2"></i> Tutorial</a>

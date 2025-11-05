@@ -68,12 +68,12 @@
         <div class="accordion-item">
           <h2 class="accordion-header">
             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#step3">
-              3. Gunakan Dashboard
+              3. Gunakan Sistem Presensi
             </button>
           </h2>
           <div id="step3" class="accordion-collapse collapse" data-bs-parent="#tutorialAccordion">
             <div class="accordion-body">
-              Setelah login, Anda akan melihat dua tombol utama: <b>Check In</b> dan <b>Check Out</b> untuk mencatat jam masuk dan keluar.
+              Setelah login, Anda akan pergi ke menu sistem presensi dan akan melihat dua tombol utama: <b>Check In</b> dan <b>Check Out</b> untuk mencatat jam masuk dan keluar.
             </div>
           </div>
         </div>

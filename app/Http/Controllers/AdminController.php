@@ -30,4 +30,10 @@ class AdminController extends Controller
     {
         return view('admin.register');
     }
+
+    public function profile()
+    {
+        return view('admin.profile');
+    }
+    
 }

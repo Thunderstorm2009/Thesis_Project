@@ -50,6 +50,11 @@ Route::get('/register', function () {
 Route::get('/tutorial', function () {
     return view('tutorial');
 });
+
+Route::get('/presensi', function () {
+    return view('presensi');
+});
+
 // Route::get('/welcome', function () {
 //     //echo "Welcome tho Sonic";
 //     return view('hello');
@@ -70,4 +75,5 @@ Route::prefix('admin')->group(function() {
     Route::get('/presensi', [AdminController::class, 'presensi'])->name('admin.presensi');
     Route::get('/login', [AdminController::class, 'login'])->name('admin.login');
     Route::get('/register', [AdminController::class, 'register'])->name('admin.register');
+    Route::get('/profile', [AdminController::class, 'profile'])->name('admin.profile');
 });
