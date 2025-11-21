@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\TrackController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -76,4 +78,5 @@ Route::prefix('admin')->group(function() {
     Route::get('/login', [AdminController::class, 'login'])->name('admin.login');
     Route::get('/register', [AdminController::class, 'register'])->name('admin.register');
     Route::get('/profile', [AdminController::class, 'profile'])->name('admin.profile');
+    Route::get('/track', [TrackController::class, 'index'])->name('admin.track');
 });

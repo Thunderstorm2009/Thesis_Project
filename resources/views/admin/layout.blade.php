@@ -35,6 +35,10 @@
       margin-left: 250px;
       padding: 20px;
     }
+    .navbar-name-small {
+      font-size: 14px !important;
+      font-weight: 600;
+    }
     .navbar {
       background-color: #ffffff;
       box-shadow: 0 2px 5px rgba(0,0,0,0.05);
@@ -62,6 +66,7 @@
     <a href="{{ url('/admin/dashboard') }}"><i class="fa fa-chart-line me-2"></i> Dashboard</a>
     <a href="{{ url('/admin/users') }}"><i class="fa fa-users me-2"></i> Data Pengguna</a>
     <a href="{{ url('/admin/presensi') }}"><i class="fa fa-calendar-check me-2"></i> Data Presensi</a>
+    <a href="{{ url('/admin/track') }}"><i class="fa fa-list-check me-2"></i> Track Telat & Izin</a>
   </div>
 
   <!-- Content -->
@@ -74,7 +79,7 @@
         <div class="dropdown ms-auto">
           <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" data-bs-toggle="dropdown">
             <img id="navbarPhoto" class="profile-img-navbar" src="https://via.placeholder.com/90?text=A">
-            <span class="ms-2 fw-semibold text-primary" id="navbarName">Admin</span>
+            <span class="ms-2 text-primary navbar-name-small" id="navbarName">Admin</span>
           </a>
           <ul class="dropdown-menu dropdown-menu-end">
             <li><a class="dropdown-item" href="{{ url('/admin/profile') }}"><i class="fa fa-user me-2"></i> Profil</a></li>

@@ -12,18 +12,53 @@
   <style>
     body {
       background-color: #f8f9fc;
-      font-family: "Roboto", sans-serif;
+      font-family: "Poppins", sans-serif;
     }
+
     .card {
       border: none;
-      box-shadow: 0 0 10px rgba(0,0,0,0.08);
+      border-radius: 15px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.10);
     }
-    .btn-primary {
-      background-color: #4e73df;
-      border-color: #4e73df;
+
+    h4 {
+      font-weight: 700;
     }
-    .btn-primary:hover {
-      background-color: #375ac3;
+
+    /* Warna berbeda saat step dibuka */
+    button[data-bs-target="#step1"].accordion-button:not(.collapsed),
+    #step1.accordion-collapse.show .accordion-body {
+      background-color:#4e73df !important; color:white !important;
+    }
+
+    button[data-bs-target="#step2"].accordion-button:not(.collapsed),
+    #step2.accordion-collapse.show .accordion-body {
+      background-color:#1cc88a !important; color:white !important;
+    }
+
+    button[data-bs-target="#step3"].accordion-button:not(.collapsed),
+    #step3.accordion-collapse.show .accordion-body {
+      background-color:#36b9cc !important; color:white !important;
+    }
+
+    button[data-bs-target="#step4"].accordion-button:not(.collapsed),
+    #step4.accordion-collapse.show .accordion-body {
+      background-color:#f6c23e !important; color:white !important;
+    }
+
+    button[data-bs-target="#step5"].accordion-button:not(.collapsed),
+    #step5.accordion-collapse.show .accordion-body {
+      background-color:#e74a3b !important; color:white !important;
+    }
+
+    button[data-bs-target="#step6"].accordion-button:not(.collapsed),
+    #step6.accordion-collapse.show .accordion-body {
+      background-color:#858796 !important; color:white !important;
+    }
+
+    /* Smooth animation */
+    .accordion-button, .accordion-body {
+      transition: background-color 0.3s ease, color 0.3s ease;
     }
   </style>
 </head>
@@ -47,7 +82,6 @@
           <div id="step1" class="accordion-collapse collapse show" data-bs-parent="#tutorialAccordion">
             <div class="accordion-body">
               Klik menu <b>Registrasi</b>, isi nama dan kata sandi Anda, lalu tekan <b>Daftar Akun</b>. 
-              Setelah berhasil, lanjutkan ke menu <b>Masuk</b>.
             </div>
           </div>
         </div>
@@ -60,7 +94,7 @@
           </h2>
           <div id="step2" class="accordion-collapse collapse" data-bs-parent="#tutorialAccordion">
             <div class="accordion-body">
-              Masuk ke menu <b>Masuk</b>, isi nama dan kata sandi yang sudah didaftarkan, lalu tekan tombol <b>Masuk ke Dashboard</b>.
+              Masukkan username dan password lalu klik <b>Masuk ke Dashboard</b>.
             </div>
           </div>
         </div>
@@ -73,7 +107,7 @@
           </h2>
           <div id="step3" class="accordion-collapse collapse" data-bs-parent="#tutorialAccordion">
             <div class="accordion-body">
-              Setelah login, Anda akan pergi ke menu sistem presensi dan akan melihat dua tombol utama: <b>Check In</b> dan <b>Check Out</b> untuk mencatat jam masuk dan keluar.
+              Gunakan tombol <b>Check In</b> untuk mencatat jam masuk dan <b>Check Out</b> untuk mencatat jam pulang.
             </div>
           </div>
         </div>
@@ -86,7 +120,7 @@
           </h2>
           <div id="step4" class="accordion-collapse collapse" data-bs-parent="#tutorialAccordion">
             <div class="accordion-body">
-              Pilih menu <b>Izin</b>, tulis alasan Anda (misal: sakit, urusan keluarga), lalu tekan tombol <b>Kirim</b>.
+              Masuk ke menu <b>Izin</b> lalu isi sebab izin seperti sakit atau urusan keluarga.
             </div>
           </div>
         </div>
@@ -94,12 +128,12 @@
         <div class="accordion-item">
           <h2 class="accordion-header">
             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#step5">
-              5. Melaporkan Keterlambatan
+              5. Melaporkan Telat
             </button>
           </h2>
           <div id="step5" class="accordion-collapse collapse" data-bs-parent="#tutorialAccordion">
             <div class="accordion-body">
-              Jika Anda datang terlambat, buka menu <b>Telat</b>, tulis alasan keterlambatan, dan kirim formulirnya.
+              Masuk ke menu <b>Telat</b> untuk mengajukan alasan keterlambatan.
             </div>
           </div>
         </div>
@@ -112,7 +146,7 @@
           </h2>
           <div id="step6" class="accordion-collapse collapse" data-bs-parent="#tutorialAccordion">
             <div class="accordion-body">
-              Klik foto profil di kanan atas dan pilih <b>Keluar</b> untuk menutup sesi Anda.
+              Klik foto profil di kanan atas dan pilih <b>Keluar</b>.
             </div>
           </div>
         </div>
